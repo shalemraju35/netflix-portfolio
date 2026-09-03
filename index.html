@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHALEM | Netflix-Style Developer Portfolio</title>
+  <meta name="description" content="Pobbathi Shalem Raju — Technical Operations Specialist & Full-Stack / AI Systems Builder. An interactive, cinematic Netflix-style portfolio showcasing live production deployments and AI architectures.">
+  <meta name="keywords" content="Pobbathi Shalem Raju, Netflix Portfolio, Full Stack Developer, AI Builder, Antigravity, PostgreSQL, Railway Cloud, Hyderabad">
+  <meta name="author" content="Pobbathi Shalem Raju">
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="SHALEM | Netflix-Style Developer Portfolio">
+  <meta property="og:description" content="Watch Pobbathi Shalem Raju transform ground-level operational problems into production software and AI-driven automation.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍿</text></svg>">
+
+  <!-- Google Fonts: Bebas Neue (Netflix Title Style) + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css?v=7.0.0">
+</head>
+<body class="netflix-theme">
+
+  <!-- 1. Cinematic Opening Preloader ("TA-DUM" Animation) -->
+  <div id="netflix-preloader" class="netflix-preloader" role="dialog" aria-label="Loading Netflix Portfolio">
+    <div class="preloader-ribbon-container">
+      <div class="ribbon-letter">
+        <span class="netflix-n-bar left"></span>
+        <span class="netflix-n-bar diag"></span>
+        <span class="netflix-n-bar right"></span>
+      </div>
+      <div class="preloader-title">SHALEM</div>
+      <div class="preloader-sub">A PRODUCTION ENGINEER ORIGINAL</div>
+    </div>
+    <button id="preloader-skip" class="preloader-skip-btn">Click to Play Sound &amp; Enter ▶</button>
+  </div>
+
+  <!-- Global Toast Notification -->
+  <div id="toast" class="netflix-toast" role="status" aria-live="polite">
+    <span class="toast-n-logo">N</span>
+    <span class="toast-msg" id="toast-text">Notification</span>
+  </div>
+
+  <!-- 2. Netflix Navigation Header -->
+  <header class="netflix-header" id="netflix-header">
+    <div class="header-left">
+      <a href="#home" class="netflix-brand-logo" aria-label="SHALEM Home">SHALEM</a>
+      <ul class="header-nav-list" id="header-nav-list">
+        <li><a href="#home" class="nav-item active">Home</a></li>
+        <li><a href="#row-production" class="nav-item">Original Series</a></li>
+        <li><a href="#row-ai" class="nav-item">AI &amp; Agents</a></li>
+        <li><a href="#row-distributed" class="nav-item">Distributed Systems</a></li>
+        <li><a href="#row-experience" class="nav-item">Career Journey</a></li>
+        <li><a href="#who-is-watching" class="nav-item">Who's Watching?</a></li>
+      </ul>
+    </div>
+
+    <div class="header-right">
+      <!-- Search Bar -->
+      <div class="search-box" id="search-box">
+        <button class="search-btn" id="search-btn" aria-label="Search systems and skills">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <input type="text" id="search-input" class="search-input" placeholder="Titles, tech, skills..." aria-label="Search portfolio">
+      </div>
+
+      <!-- Live Production Notification Bell -->
+      <div class="notification-wrap" id="notification-wrap" title="1 Live Deployment Active">
+        <button class="icon-btn" aria-label="Notifications">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+          <span class="notification-badge">1</span>
+        </button>
+        <div class="notification-dropdown">
+          <div class="notif-header">LATEST DEPLOYMENT</div>
+          <a href="https://doctutorials-quiz-dashboard-production.up.railway.app/" target="_blank" rel="noopener noreferrer" class="notif-item">
+            <span class="notif-dot"></span>
+            <div>
+              <strong>DocTutorials Quiz Analytics Platform</strong>
+              <p>Live on Railway Cloud • Medical College Telemetry</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Profile Avatar -->
+      <a href="#who-is-watching" class="profile-avatar-link" aria-label="User Profile">
+        <div class="avatar-box">
+          <img src="assets/avatar.jpg" alt="Pobbathi Shalem Raju" class="nav-avatar-img">
+        </div>
+      </a>
+
+      <!-- Mobile Hamburger -->
+      <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <a href="#home" class="mobile-nav-link">Home</a>
+    <a href="#row-production" class="mobile-nav-link">Original Series (Live Apps)</a>
+    <a href="#row-ai" class="mobile-nav-link">AI &amp; Agentic Workflows</a>
+    <a href="#row-distributed" class="mobile-nav-link">Web Platforms &amp; Design</a>
+    <a href="#row-experience" class="mobile-nav-link">Career Journey</a>
+    <a href="#row-skills" class="mobile-nav-link">Technical Genres</a>
+    <a href="#who-is-watching" class="mobile-nav-link">Who's Watching? (Contact)</a>
+  </div>
+
+  <main>
+
+    <!-- 3. Billboard Hero Banner ("Blockbuster Title") -->
+    <section id="home" class="billboard-hero">
+      <div class="billboard-backdrop-vignette"></div>
+      <canvas id="live-wallpaper-canvas" class="live-wallpaper-canvas"></canvas>
+      <div class="billboard-backdrop-image"></div>
+
+      <!-- Netflix Style Animated Background Marquee Motion Layer -->
+      <div class="billboard-motion-marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>A SHALEM RAJU ORIGINAL &bull; FULL-STACK ARCHITECT &bull; AI &amp; AGENTIC SYSTEMS &bull; DOCTUTORIALS PRODUCTION &bull; DECCAN EXPERTS &bull; VISWAKARMA AWARD &bull; </span>
+          <span>A SHALEM RAJU ORIGINAL &bull; FULL-STACK ARCHITECT &bull; AI &amp; AGENTIC SYSTEMS &bull; DOCTUTORIALS PRODUCTION &bull; DECCAN EXPERTS &bull; VISWAKARMA AWARD &bull; </span>
+        </div>
+      </div>
+
+      <!-- Mouse-Tracking Ambient Spotlight Glow -->
+      <div class="billboard-spotlight-glow" id="billboard-spotlight"></div>
+
+      <div class="billboard-container-flex">
+        <!-- Left: Billboard Content -->
+        <div class="billboard-content">
+          <!-- Series Badge -->
+          <div class="series-badge">
+            <span class="n-symbol">N</span>
+            <span class="series-text">A SHALEM RAJU ORIGINAL SERIES</span>
+          </div>
+
+          <!-- Main Title Logo -->
+          <h1 class="billboard-title">DOCTUTORIALS: QUIZ ANALYTICS</h1>
+
+          <!-- Top 10 Today Badge -->
+          <div class="top-10-row">
+            <span class="top-10-badge">TOP 10</span>
+            <span class="top-10-text">#1 in Live Software &amp; AI Systems Today</span>
+          </div>
+
+          <!-- Telemetry Metadata -->
+          <div class="billboard-meta">
+            <span class="meta-match">99% Match</span>
+            <span class="meta-year">2026</span>
+            <span class="meta-rating">PROD-READY</span>
+            <span class="meta-seasons">1 Season</span>
+            <span class="meta-badge-tech">PostgreSQL</span>
+            <span class="meta-badge-tech">Railway Cloud</span>
+            <span class="meta-badge-tech">Antigravity</span>
+          </div>
+
+          <!-- Synopsis / Plot -->
+          <p class="billboard-synopsis">
+            Confronted with crippling manual operational bottlenecks across partner medical colleges, an Operations Specialist transitions into full-stack architecture to engineer an end-to-end real-time quiz assessment and student analytics platform.
+          </p>
+
+          <!-- CTAs: Play and More Info -->
+          <div class="billboard-actions">
+            <a href="https://doctutorials-quiz-dashboard-production.up.railway.app/" target="_blank" rel="noopener noreferrer" class="btn-netflix play-btn">
+              <span class="btn-icon">▶</span>
+              <span>Play (Launch Live App)</span>
+            </a>
+            <button class="btn-netflix info-btn" id="hero-more-info-btn" data-project-id="doctutorials">
+              <span class="btn-icon">ⓘ</span>
+              <span>More Info</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Holographic Developer Poster Card (Sushmitadasari/Netflix_portfolio style) -->
+        <div class="billboard-hero-poster-wrapper">
+          <div class="hero-poster-neon-glow"></div>
+          <div class="hero-poster-card" id="hero-poster-card">
+            <div class="hero-poster-glare"></div>
+            <div class="hero-poster-badge">
+              <span class="badge-dot">●</span> FEATURED BUILDER
+            </div>
+            <img src="assets/shalem_hero.jpg" alt="Pobbathi Shalem Raju" class="hero-poster-img">
+            <div class="hero-poster-info">
+              <div class="hero-poster-name">POBBATHI SHALEM RAJU</div>
+              <div class="hero-poster-role">Operations Specialist ➔ Full-Stack &amp; AI Engineer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Audio Mute / Unmute & Maturity Rating Bar on Right -->
+      <div class="billboard-right-controls">
+        <button class="sound-toggle-btn" id="sound-toggle" aria-label="Toggle Sound">
+          <span id="sound-icon">🔊</span>
+        </button>
+        <div class="maturity-pill">PROD-READY / 18+</div>
+      </div>
+    </section>
+
+    <!-- 4. Netflix Horizontal Carousel Rows -->
+    <div class="netflix-browse-container">
+
+      <!-- Row 1: Trending Now: Production Deployments -->
+      <section class="netflix-row" id="row-production">
+        <h2 class="row-header">
+          <span class="row-title">Trending Now: Flagship Production Deployments</span>
+          <span class="row-explore-all">Explore All &gt;</span>
+        </h2>
+
+        <div class="carousel-wrapper">
+          <button class="carousel-nav left" aria-label="Previous titles">‹</button>
+          <div class="carousel-track">
+
+            <!-- Card 1: DocTutorials -->
+            <article class="netflix-card" data-project-id="doctutorials">
+              <div class="card-thumb doctutorials-thumb">
+                <span class="thumb-series-tag">ORIGINAL</span>
+                <span class="thumb-title">DOCTUTORIALS</span>
+                <span class="thumb-sub">Quiz Analytics Platform</span>
+              </div>
+              <div class="card-hover-pop">
+                <div class="hover-actions-row">
+                  <a href="https://doctutorials-quiz-dashboard-production.up.railway.app/" target="_blank" rel="noopener noreferrer" class="circle-btn play" title="Launch Live App">▶</a>
+                  <button class="circle-btn add" title="Add to Watchlist">+</button>
+                  <button class="circle-btn like" title="Like">👍</button>
+                  <button class="circle-btn more" data-project-id="doctutorials" title="More Info">∨</button>
+                </div>
+                <div class="hover-meta-row">
+                  <span class="meta-match">99% Match</span>
+                  <span class="meta-rating-mini">18+</span>
+                  <span class="meta-episodes">S01:E01</span>
+                  <span class="meta-hd">4K</span>
+                </div>
+                <div class="hover-genres">
+                  <span>Antigravity</span> • <span>PostgreSQL</span> • <span>Railway</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2: DocTutorials B2B Partner Dashboard -->
+            <article class="netflix-card" data-project-id="b2b-dashboard">
+              <div class="card-thumb b2b-thumb">
+                <span class="thumb-series-tag">PRODUCTION</span>
+                <span class="thumb-title">B2B DASHBOARD</span>
+                <span class="thumb-sub">Partner Ops &amp; Medical Colleges</span>
+              </div>
+              <div class="card-hover-pop">
+                <div class="hover-actions-row">
+                  <a href="https://studio-dashboard-production-ec48.up.railway.app/" target="_blank" rel="noopener noreferrer" class="circle-btn play" title="Launch B2B Dashboard">▶</a>
+                  <button class="circle-btn add" title="Add to Watchlist">+</button>
+                  <button class="circle-btn like" title="Like">👍</button>
+                  <button class="circle-btn more" data-project-id="b2b-dashboard" title="More Info">∨</button>
+                </div>
+                <div class="hover-meta-row">
+                  <span class="meta-match">99% Match</span>
+                  <span class="meta-rating-mini">18+</span>
+                  <span class="meta-episodes">S01:E02</span>
+                  <span class="meta-hd">4K</span>
+                </div>
+                <div class="hover-genres">
+                  <span>Antigravity</span> • <span>PostgreSQL</span> • <span>Railway</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3: Autonomous Talent Scouting Agent -->
+            <article class="netflix-card" data-project-id="talent-scout">
+              <div class="card-thumb talent-thumb">
+                <span class="thumb-series-tag">HACKATHON FINALIST</span>
+                <span class="thumb-title">TALENT SCOUT AGENT</span>
+                <span class="thumb-sub">Deccan AI Catalyst</span>
+              </div>
+              <div class="card-hover-pop">
+                <div class="hover-actions-row">
+                  <a href="https://talent-scout-ai-production.up.railway.app/" target="_blank" rel="noopener noreferrer" class="circle-btn play" title="Launch Live Agent App">▶</a>
+                  <button class="circle-btn add">+</button>
+                  <button class="circle-btn like">👍</button>
+                  <button class="circle-btn more" data-project-id="talent-scout">∨</button>
+                </div>
+                <div class="hover-meta-row">
+                  <span class="meta-match">98% Match</span>
+                  <span class="meta-rating-mini">AI-AGENT</span>
+                  <span class="meta-episodes">S01:E03</span>
+                  <span class="meta-hd">HD</span>
+                </div>
+                <div class="hover-genres">
+                  <span>LLM APIs</span> • <span>Agentic Workflows</span> • <span>Railway</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 4: Smart Value Farming -->
+            <article class="netflix-card" data-project-id="smart-farming">
+              <div class="card-thumb farming-thumb">
+                <span class="thumb-series-tag">AWARD NOMINEE</span>
+                <span class="thumb-title">SMART VALUE FARMING</span>
+                <span class="thumb-sub">Agronomic Advisory &amp; Telemetry</span>
+              </div>
+              <div class="card-hover-pop">
+                <div class="hover-actions-row">
+                  <a href="https://smart-value-farming-production.up.railway.app/" target="_blank" rel="noopener noreferrer" class="circle-btn play" title="Launch Smart Farming App">▶</a>
+                  <button class="circle-btn add">+</button>
+                  <button class="circle-btn like">👍</button>
+                  <button class="circle-btn more" data-project-id="smart-farming">∨</button>
+                </div>
+                <div class="hover-meta-row">
+                  <span class="meta-match">98% Match</span>
+                  <span class="meta-rating-mini">AGRITECH</span>
+                  <span class="meta-episodes">S01:E04</span>
+                  <span class="meta-hd">4K</span>
+                </div>
+                <div class="hover-genres">
+                  <span>Full-Stack Web</span> • <span>Soil Telemetry</span> • <span>Railway</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 5: Regional Connect E-Commerce -->
+            <article class="netflix-card" data-project-id="regional-ecommerce">
+              <div class="card-thumb ecommerce-thumb">
+                <span class="thumb-series-tag">AWARD NOMINEE</span>
+                <span class="thumb-title">REGIONAL E-COMMERCE</span>
+                <span class="thumb-sub">Farmer-to-Consumer Direct Market</span>
+              </div>
+              <div class="card-hover-pop">
+                <div class="hover-actions-row">
+                  <a href="https://regional-connect-ecommerce-production.up.railway.app/" target="_blank" rel="noopener noreferrer" class="circle-btn play" title="Launch Regional E-Commerce">▶</a>
+                  <button class="circle-btn add">+</button>
+                  <button class="circle-btn like">👍</button>
+                  <button class="circle-btn more" data-project-id="regional-ecommerce">∨</button>
+                </div>
+                <div class="hover-meta-row">
+                  <span class="meta-match">97% Match</span>
+                  <span class="meta-rating-mini">COMMERCE</span>
+                  <span class="meta-episodes">S01:E05</span>
+                  <span class="meta-hd">5.1</span>
+                </div>
+                <div class="hover-genres">
+                  <span>Marketplace</span> • <span>Logistics Routing</span> • <span>Railway</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 6: Enterprise AI Evaluation -->
+            <article class="netflix-card" data-project-id="ai-eval">
+              <div class="card-thumb eval-thumb">
+                <span class="thumb-series-tag">AI RESEARCH</span>
+                <span class="thumb-title">AI MODEL BENCHMARKING</span>
+                <span class="thumb-sub">Deccan AI Auditing</span>
+              </div>
+              <div class="card-hover-pop">
+                <div class="hover-actions-row">
+                  <a href="https://platform.deccanexperts.ai/" target="_blank" rel="noopener noreferrer" class="circle-btn play" title="Launch AI Platform">▶</a>
+                  <button class="circle-btn add">+</button>
+                  <button class="circle-btn like">👍</button>
+                  <button class="circle-btn more" data-project-id="ai-eval">∨</button>
+                </div>
+                <div class="hover-meta-row">
+                  <span class="meta-match">96% Match</span>
+                  <span class="meta-rating-mini">RESEARCH</span>
+                  <span class="meta-episodes">S01:E06</span>
+                  <span class="meta-hd">HDR</span>
+                </div>
+                <div class="hover-genres">
+                  <span>Multimodal Reasoning</span> • <span>Edge-Case Audits</span> • <span>Deccan Experts</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+          <button class="carousel-nav right" aria-label="Next titles">›</button>
+        </div>
+      </section>
+
+      <!-- Row 2: Critically Acclaimed: AI Expertise & Project Participation -->
+      <section class="netflix-row" id="row-ai">
+        <h2 class="row-header">
+          <span class="row-title">Critically Acclaimed: AI Expertise &amp; Project Participation</span>
+          <span class="row-explore-all">Deccan Experts &gt;</span>
+        </h2>
+
+        <div class="carousel-wrapper">
+          <button class="carousel-nav left">‹</button>
+          <div class="carousel-track">
+
+            <!-- Card 1: AI Prompt Engineering -->
+            <article class="netflix-card" data-project-id="prompt-engineering">
+              <div class="card-thumb prompt-thumb">
+                <span class="thumb-series-tag">DECCAN EXPERTS</span>
+                <span class="thumb-title">AI PROMPT ENGINEERING</span>
+                <span class="thumb-sub">Prompt Refinement &amp; Accuracy Optimization</span>
+              </div>
+              <div class="card-hover-pop">
+                <div class="hover-actions-row">
+                  <a href="https://platform.deccanexperts.ai/" target="_blank" rel="noopener noreferrer" class="circle-btn play" title="Launch Deccan Experts Platform">▶</a>
+                  <button class="circle-btn add" title="Add to Watchlist">+</button>
+                  <button class="circle-btn like" title="Like">👍</button>
+                  <button class="circle-btn more" data-project-id="prompt-engineering" title="More Info">∨</button>
+                </div>
+                <div class="hover-meta-row">
+                  <span class="meta-match">99% Match</span>
+                  <span class="meta-rating-mini">PROMPT-AI</span>
+                  <span class="meta-episodes">S02:E01</span>
+                  <span class="meta-hd">4K</span>
+                </div>
+                <div class="hover-genres">
+                  <span>Prompt Architecture</span> • <span>Constraints</span> • <span>Deccan Experts</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2: AI Annotation -->
+            <article class="netflix-card" data-project-id="ai-annotation">
+              <div class="card-thumb annotation-thumb">
+                <span class="thumb-series-tag">DECCAN EXPERTS</span>
+                <span class="thumb-title">AI ANNOTATION &amp; RLHF</span>
+                <span class="thumb-sub">Data Labeling, Categorization &amp; Quality QA</span>
+              </div>
+              <div class="card-hover-pop">
+                <div class="hover-actions-row">
+                  <a href="https://platform.deccanexperts.ai/" target="_blank" rel="noopener noreferrer" class="circle-btn play" title="Launch Deccan Experts Platform">▶</a>
+                  <button class="circle-btn add" title="Add to Watchlist">+</button>
+                  <button class="circle-btn like" title="Like">👍</button>
+                  <button class="circle-btn more" data-project-id="ai-annotation" title="More Info">∨</button>
+                </div>
+                <div class="hover-meta-row">
+                  <span class="meta-match">98% Match</span>
+                  <span class="meta-rating-mini">DATA-EVAL</span>
+                  <span class="meta-episodes">S02:E02</span>
+                  <span class="meta-hd">HDR</span>
+                </div>
+                <div class="hover-genres">
+                  <span>Dataset Labeling</span> • <span>Human Feedback</span> • <span>Deccan Experts</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3: Project Matrix -->
+            <article class="netflix-card" data-project-id="project-matrix">
+              <div class="card-thumb matrix-thumb">
+                <span class="thumb-series-tag">DECCAN EXPERTS</span>
+                <span class="thumb-title">PROJECT MATRIX</span>
+                <span class="thumb-sub">Structured AI Workflow &amp; Error Identification</span>
+              </div>
+              <div class="card-hover-pop">
+                <div class="hover-actions-row">
+                  <a href="https://platform.deccanexperts.ai/" target="_blank" rel="noopener noreferrer" class="circle-btn play" title="Launch Deccan Experts Platform">▶</a>
+                  <button class="circle-btn add" title="Add to Watchlist">+</button>
+                  <button class="circle-btn like" title="Like">👍</button>
+                  <button class="circle-btn more" data-project-id="project-matrix" title="More Info">∨</button>
+                </div>
+                <div class="hover-meta-row">
+                  <span class="meta-match">99% Match</span>
+                  <span class="meta-rating-mini">WORKFLOW</span>
+                  <span class="meta-episodes">S02:E03</span>
+                  <span class="meta-hd">5.1</span>
+                </div>
+                <div class="hover-genres">
+                  <span>Task Operations</span> • <span>Quality Standards</span> • <span>Deccan Experts</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+          <button class="carousel-nav right">›</button>
+        </div>
+      </section>
+
+      <!-- Row 3: High-Throughput: Web Development & Creative Direction -->
+      <section class="netflix-row" id="row-distributed">
+        <h2 class="row-header">
+          <span class="row-title">High-Throughput: Web Platforms &amp; Creative Direction</span>
+          <span class="row-explore-all">Explore All &gt;</span>
+        </h2>
+
+        <div class="carousel-wrapper">
+          <button class="carousel-nav left">‹</button>
+          <div class="carousel-track">
+
+            <!-- Card 1: Website Development WordPress - FrameAxis -->
+            <article class="netflix-card" data-project-id="frameaxis">
+              <div class="card-thumb wordpress-thumb">
+                <span class="thumb-series-tag">WORDPRESS STUDIO</span>
+                <span class="thumb-title">FRAMEAXIS PLATFORM</span>
+                <span class="thumb-sub">Web Architecture &amp; Creative Portal</span>
+              </div>
+              <div class="card-hover-pop">
+                <div class="hover-actions-row">
+                  <a href="https://frameaxis.com/" target="_blank" rel="noopener noreferrer" class="circle-btn play" title="Launch FrameAxis Studio (frameaxis.com)">▶</a>
+                  <a href="https://first.frameaxis.com/" target="_blank" rel="noopener noreferrer" class="circle-btn add" title="Showcase Portal (first.frameaxis.com)">↗</a>
+                  <button class="circle-btn like" title="Like">👍</button>
+                  <button class="circle-btn more" data-project-id="frameaxis" title="More Info">∨</button>
+                </div>
+                <div class="hover-meta-row">
+                  <span class="meta-match">99% Match</span>
+                  <span class="meta-rating-mini">WORDPRESS</span>
+                  <span class="meta-episodes">S03:E01</span>
+                  <span class="meta-hd">4K</span>
+                </div>
+                <div class="hover-genres">
+                  <span>WordPress</span> • <span>Creative Studio</span> • <span>frameaxis.com</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2: Graphic Design Portfolio -->
+            <article class="netflix-card" data-project-id="graphic-design">
+              <div class="card-thumb design-thumb">
+                <span class="thumb-series-tag">CREATIVE ASSETS</span>
+                <span class="thumb-title">GRAPHIC DESIGN PORTFOLIO</span>
+                <span class="thumb-sub">Brand Identities &amp; Vector Direction</span>
+              </div>
+              <div class="card-hover-pop">
+                <div class="hover-actions-row">
+                  <a href="https://drive.google.com/drive/folders/1pRh-EDxS40hb_Mn34JvD1dzj44JoXskN?usp=sharing" target="_blank" rel="noopener noreferrer" class="circle-btn play" title="Open Google Drive Portfolio">▶</a>
+                  <button class="circle-btn add" title="Add to Watchlist">+</button>
+                  <button class="circle-btn like" title="Like">👍</button>
+                  <button class="circle-btn more" data-project-id="graphic-design" title="More Info">∨</button>
+                </div>
+                <div class="hover-meta-row">
+                  <span class="meta-match">98% Match</span>
+                  <span class="meta-rating-mini">CREATIVE</span>
+                  <span class="meta-episodes">S03:E02</span>
+                  <span class="meta-hd">VECTOR</span>
+                </div>
+                <div class="hover-genres">
+                  <span>Brand Identity</span> • <span>Vector Art</span> • <span>Google Drive</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+          <button class="carousel-nav right">›</button>
+        </div>
+      </section>
+
+      <!-- Row 4: Career Progression ("Original Series: The Builder's Journey") -->
+      <section class="netflix-row" id="row-experience">
+        <h2 class="row-header">
+          <span class="row-title">Original Series: The Builder's Journey</span>
+          <span class="row-explore-all">3 Seasons Available</span>
+        </h2>
+
+        <div class="experience-episodes-grid">
+          
+          <!-- Season 1: DocTutorials -->
+          <div class="episode-card" data-project-id="doctutorials">
+            <div class="episode-num">1</div>
+            <div class="episode-thumb">
+              <img src="assets/episode_doc.jpg" alt="DocTutorials Edutech Operations &amp; Code" class="episode-img" loading="lazy">
+              <div class="episode-overlay">
+                <span class="episode-play-icon">▶</span>
+              </div>
+              <span class="exp-badge">CURRENT</span>
+            </div>
+            <div class="episode-info">
+              <div class="episode-title-row">
+                <h3 class="episode-title">DocTutorials Edutech: Operations to Code</h3>
+                <span class="episode-duration">Jan 2026 – Present</span>
+              </div>
+              <p class="episode-desc">
+                Transitioned from frontline Inside Sales into B2B Operations to manage core academic partner programs. Recognized severe institutional reporting delays and independently engineered the production DocTutorials Quiz Analytics Platform to automate real-time student scoring across medical partner colleges.
+              </p>
+              <div class="episode-tags">
+                <span>B2B Operations</span> • <span>Full-Stack Development</span> • <span>Railway Cloud</span> • <span>PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Season 2: Deccan Experts & FrameAxis -->
+          <div class="episode-card" data-project-id="project-matrix">
+            <div class="episode-num">2</div>
+            <div class="episode-thumb">
+              <img src="assets/episode_ai.jpg" alt="Deccan Experts &amp; FrameAxis AI Systems" class="episode-img" loading="lazy">
+              <div class="episode-overlay">
+                <span class="episode-play-icon">▶</span>
+              </div>
+              <span class="exp-badge">AI &amp; WEB</span>
+            </div>
+            <div class="episode-info">
+              <div class="episode-title-row">
+                <h3 class="episode-title">Deccan Experts &amp; FrameAxis: AI Systems &amp; Web Platforms</h3>
+                <span class="episode-duration">2024 – 2025</span>
+              </div>
+              <p class="episode-desc">
+                Engaged in hands-on production AI workflows at Deccan Experts across Prompt Engineering, AI Annotation, and Project Matrix quality governance. Concurrently engineered high-performance WordPress web platforms and digital media design for FrameAxis.
+              </p>
+              <div class="episode-tags">
+                <span>Prompt Engineering</span> • <span>AI Annotation</span> • <span>WordPress</span> • <span>Graphic Design</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Season 3: Academic Foundation -->
+          <div class="episode-card" data-project-id="education">
+            <div class="episode-num">3</div>
+            <div class="episode-thumb">
+              <img src="assets/episode_ece.jpg" alt="Santhiram Engineering College ECE" class="episode-img" loading="lazy">
+              <div class="episode-overlay">
+                <span class="episode-play-icon">▶</span>
+              </div>
+              <span class="exp-badge">DEGREE</span>
+            </div>
+            <div class="episode-info">
+              <div class="episode-title-row">
+                <h3 class="episode-title">Santhiram Engineering College: B.Tech in ECE</h3>
+                <span class="episode-duration">Graduated 2021 (68%)</span>
+              </div>
+              <p class="episode-desc">
+                Graduated with a Bachelor of Technology in Electronics &amp; Communication Engineering. Mastered signal processing fundamentals, embedded systems, and algorithmic problem-solving in Nandyal, Andhra Pradesh.
+              </p>
+              <div class="episode-tags">
+                <span>Electronics &amp; Communication</span> • <span>Embedded Logic</span> • <span>Hardware Architecture</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Row 5: Technical Arsenal (Categorized as Netflix Genres) -->
+      <section class="netflix-row" id="row-skills">
+        <h2 class="row-header">
+          <span class="row-title">Browse by Genre &amp; Technical Stacks</span>
+        </h2>
+
+        <div class="genres-bento-grid">
+          
+          <div class="genre-tile">
+            <h3 class="genre-name">AI &amp; Developer Workflows</h3>
+            <div class="genre-pills">
+              <span class="g-pill">Cursor (AI IDE)</span>
+              <span class="g-pill">Google AI Studio</span>
+              <span class="g-pill">Gemini Studio</span>
+              <span class="g-pill">Visual Studio</span>
+              <span class="g-pill">Git &amp; GitHub</span>
+              <span class="g-pill">Railway Cloud</span>
+              <span class="g-pill">Vercel Edge</span>
+            </div>
+          </div>
+
+          <div class="genre-tile">
+            <h3 class="genre-name">Full-Stack &amp; Systems</h3>
+            <div class="genre-pills">
+              <span class="g-pill">Antigravity</span>
+              <span class="g-pill">JavaScript (ESNext)</span>
+              <span class="g-pill">HTML5 &amp; CSS3</span>
+              <span class="g-pill">PostgreSQL</span>
+              <span class="g-pill">RESTful APIs</span>
+              <span class="g-pill">Webhook Architecture</span>
+            </div>
+          </div>
+
+          <div class="genre-tile">
+            <h3 class="genre-name">Data &amp; Automation</h3>
+            <div class="genre-pills">
+              <span class="g-pill">SQL Optimization</span>
+              <span class="g-pill">Web Scraping</span>
+              <span class="g-pill">Workflow Automation</span>
+              <span class="g-pill">Advanced MS Excel</span>
+              <span class="g-pill">Prompt Engineering</span>
+              <span class="g-pill">Model Auditing</span>
+            </div>
+          </div>
+
+          <div class="genre-tile">
+            <h3 class="genre-name">Engineering Core</h3>
+            <div class="genre-pills">
+              <span class="g-pill">High-Velocity Prototyping</span>
+              <span class="g-pill">Production Deployment</span>
+              <span class="g-pill">Operational Optimization</span>
+              <span class="g-pill">System Architecture</span>
+              <span class="g-pill">B2B Delivery</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 5. "Who's Watching?" Profile Selector & Command Center -->
+      <section class="netflix-row who-is-watching-section" id="who-is-watching">
+        <h2 class="profile-heading">Who's Watching?</h2>
+        <p class="profile-subheading">Select your profile role to unlock tailored engineering summaries and direct communication protocols.</p>
+
+        <div class="profile-grid">
+          
+          <!-- Profile 1: Recruiter -->
+          <div class="profile-card" data-profile="recruiter">
+            <div class="profile-avatar-box blue">
+              <span class="profile-icon">💼</span>
+            </div>
+            <span class="profile-name">Recruiter</span>
+            <span class="profile-hint">Full-time hiring &amp; role matching</span>
+          </div>
+
+          <!-- Profile 2: Engineering Lead -->
+          <div class="profile-card" data-profile="engineer">
+            <div class="profile-avatar-box red">
+              <span class="profile-icon">⚡</span>
+            </div>
+            <span class="profile-name">Tech Lead / Architect</span>
+            <span class="profile-hint">Code reviews &amp; system architecture</span>
+          </div>
+
+          <!-- Profile 3: Founder / Client -->
+          <div class="profile-card" data-profile="founder">
+            <div class="profile-avatar-box green">
+              <span class="profile-icon">🚀</span>
+            </div>
+            <span class="profile-name">Founder / Client</span>
+            <span class="profile-hint">Operational systems &amp; prototypes</span>
+          </div>
+
+        </div>
+
+        <!-- Interactive Transmission Terminal Card -->
+        <div class="transmission-hub">
+          <div class="hub-header">
+            <span class="hub-live-dot"></span>
+            <span>COMMUNICATION TELEMETRY // DIRECT CHANNELS</span>
+          </div>
+
+          <div class="hub-channels">
+            <div class="hub-channel-item">
+              <span class="ch-lbl">Direct Email</span>
+              <div class="ch-row">
+                <span class="ch-val" id="profile-email">shalemraju.p35@gmail.com</span>
+                <button class="netflix-mini-btn" id="copy-email-btn">Copy Email</button>
+              </div>
+            </div>
+
+            <div class="hub-channel-item">
+              <span class="ch-lbl">Telephone</span>
+              <div class="ch-row">
+                <span class="ch-val">+91-9550915931</span>
+                <a href="tel:+919550915931" class="netflix-mini-btn">Call Now</a>
+              </div>
+            </div>
+
+            <div class="hub-channel-item">
+              <span class="ch-lbl">Developer Profiles</span>
+              <div class="ch-links">
+                <a href="https://github.com/shalemraju35" target="_blank" rel="noopener noreferrer" class="hub-link-pill">GitHub (@shalemraju35) ↗</a>
+                <a href="https://www.linkedin.com/in/shalemraju-pobbathi-83a090151" target="_blank" rel="noopener noreferrer" class="hub-link-pill">LinkedIn Profile ↗</a>
+              </div>
+            </div>
+
+            <!-- Live Contact Transmission Form -->
+            <div class="hub-channel-item hub-form-item">
+              <span class="ch-lbl">Instant Telemetry Transmission</span>
+              <form id="contact-transmission-form" class="transmission-form">
+                <div class="form-inputs-row">
+                  <input type="text" id="tx-name" placeholder="Your Name or Company" class="tx-input" required>
+                  <input type="email" id="tx-email" placeholder="Your Work Email" class="tx-input" required>
+                </div>
+                <textarea id="tx-message" placeholder="Describe role, project requirements, or partnership proposal..." rows="2" class="tx-textarea" required></textarea>
+                <button type="submit" class="btn-netflix play-btn tx-submit-btn" id="tx-submit-btn">
+                  <span>🚀 Send Telemetry Transmission</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- 6. Interactive Netflix "More Info" Title Modal Dialog -->
+  <div id="netflix-modal" class="netflix-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-window">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close dialog">✕</button>
+      
+      <!-- Modal Billboard Header -->
+      <div class="modal-hero-banner" id="modal-hero-banner">
+        <div class="modal-hero-vignette"></div>
+        <div class="modal-hero-content">
+          <span class="modal-series-badge" id="modal-series-badge">A SHALEM RAJU ORIGINAL</span>
+          <h2 class="modal-title" id="modal-title">DOCTUTORIALS: QUIZ ANALYTICS</h2>
+          
+          <div class="modal-actions-row">
+            <a href="#" target="_blank" rel="noopener noreferrer" class="btn-netflix play-btn" id="modal-play-link">
+              <span>▶ Launch Application</span>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="btn-netflix info-btn" id="modal-repo-link">
+              <span>Repository / Architecture ↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Body Details -->
+      <div class="modal-body">
+        <div class="modal-left-details">
+          <div class="modal-meta-row">
+            <span class="meta-match" id="modal-match">99% Match</span>
+            <span class="meta-year" id="modal-year">2026</span>
+            <span class="meta-rating" id="modal-rating">PROD-READY</span>
+            <span class="meta-hd">4K UHD</span>
+          </div>
+
+          <p class="modal-synopsis" id="modal-synopsis">
+            Architected and deployed an end-to-end quiz analytics dashboard for DocTutorials to track student engagement, quiz scoring, and academic metrics across medical partner institutions.
+          </p>
+
+          <div class="modal-episodes-section" id="modal-episodes-section">
+            <h3 class="modal-section-title">Architecture Milestones &amp; Features</h3>
+            <div class="modal-episodes-list" id="modal-episodes-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-right-meta">
+          <div class="modal-meta-group">
+            <span class="m-label">Architect / Creator:</span>
+            <span class="m-value">Pobbathi Shalem Raju</span>
+          </div>
+          <div class="modal-meta-group">
+            <span class="m-label">Technologies:</span>
+            <span class="m-value" id="modal-tech-stack">Antigravity, PostgreSQL, Railway Cloud</span>
+          </div>
+          <div class="modal-meta-group">
+            <span class="m-label">Classification:</span>
+            <span class="m-value" id="modal-classification">Production Software, Institutional Analytics</span>
+          </div>
+          <div class="modal-meta-group">
+            <span class="m-label">Deployment:</span>
+            <span class="m-value" id="modal-deployment">Railway Cloud Orchestration</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 7. Netflix Global Footer -->
+  <footer class="netflix-footer">
+    <div class="footer-wrap">
+      <div class="footer-socials">
+        <a href="https://github.com/shalemraju35" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
+        <a href="https://www.linkedin.com/in/shalemraju-pobbathi-83a090151" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+        <a href="mailto:shalemraju.p35@gmail.com" aria-label="Email">Email</a>
+        <a href="tel:+919550915931" aria-label="Phone">Phone</a>
+      </div>
+
+      <div class="footer-nav-grid">
+        <a href="#home">Home</a>
+        <a href="#row-production">Production Deployments</a>
+        <a href="#row-ai">AI &amp; Agent Workflows</a>
+        <a href="#row-distributed">Distributed Systems</a>
+        <a href="#row-experience">Career Experience</a>
+        <a href="#row-skills">Technical Genres</a>
+        <a href="#who-is-watching">Contact / Who's Watching</a>
+        <a href="https://doctutorials-quiz-dashboard-production.up.railway.app/" target="_blank" rel="noopener noreferrer">Live DocTutorials App</a>
+      </div>
+
+      <div class="footer-copy">
+        &copy; 2026 Pobbathi Shalem Raju. Inspired by Netflix &amp; Engineered with Antigravity, Native Web Audio &amp; Vanilla CSS.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js?v=7.0.0"></script>
+</body>
+</html>

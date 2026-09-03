@@ -1,0 +1,25 @@
+{
+  "name": "shalem-raju-3d-portfolio",
+  "version": "1.0.0",
+  "description": "Interactive 3D Developer Portfolio for Pobbathi Shalem Raju - Operations Specialist to Full-Stack & AI Builder",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "threejs",
+    "full-stack",
+    "ai",
+    "developer",
+    "web3d"
+  ],
+  "author": "Pobbathi Shalem Raju",
+  "license": "MIT",
+  "dependencies": {
+    "compression": "^1.8.1",
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}

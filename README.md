@@ -62,19 +62,38 @@ An authentic, cinematic **Netflix-style developer portfolio** for **Pobbathi Sha
 
 ---
 
+## 🌐 Live Deployments & Repository Links
+
+- **🚀 Live Production Website (Railway Cloud)**: [https://netflix-portfolio-production.up.railway.app](https://netflix-portfolio-production.up.railway.app)
+- **📦 GitHub Repository**: [https://github.com/shalemraju35/netflix-portfolio](https://github.com/shalemraju35/netflix-portfolio)
+- **📡 Live Backend Healthcheck**: [https://netflix-portfolio-production.up.railway.app/health](https://netflix-portfolio-production.up.railway.app/health)
+
+---
+
+## 🛠️ Backend Architecture & REST APIs
+
+Built with **Node.js, Express, CORS, and Gzip Compression**:
+- `GET /health` & `GET /api/health` — Microservice uptime, timestamp, and health verification.
+- `GET /api/projects` — Full JSON catalog of flagship production deployments, AI workflows, and web platforms.
+- `GET /api/profile` — Candidate telemetry, technical skills, and contact channels.
+- `POST /api/contact` — Receives recruiter/client contact messages and persists them with timestamps.
+
+---
+
 ## 🚀 Running Locally
 
 ```bash
+npm install
 npm start
 # or
 npm run dev
 ```
 
-Navigate to: `http://localhost:3000`
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## ☁️ 1-Click Deployment
+## ☁️ Cloud Deployment Configuration
 
-- **Railway**: Deploys using `server.js` with zero dependencies on Railway Cloud.
-- **Vercel**: Includes `vercel.json` with security headers and edge caching.
+- **Railway Cloud**: Auto-configured with `Procfile` (`web: node server.js`) and `railway.json` pointing to healthcheck endpoint.
+- **GitHub**: Continuous deployment ready tracking branch `main`.

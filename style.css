@@ -1565,61 +1565,100 @@ button {
   color: #fff;
   background: rgba(255, 255, 255, 0.08);
   padding: 6px 14px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
 .hub-link-pill:hover {
-  background: rgba(255, 255, 255, 0.16);
+  background: var(--netflix-red);
+  color: #fff;
 }
 
 .hub-form-item {
   flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
+  align-items: stretch;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hub-form-item .ch-lbl {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .transmission-form {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   margin-top: 4px;
 }
 
 .form-inputs-row {
-  display: flex;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
   width: 100%;
 }
 
 .tx-input, .tx-textarea {
   width: 100%;
-  background: rgba(10, 10, 10, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-sizing: border-box;
+  background: rgba(12, 12, 12, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 4px;
-  padding: 10px 14px;
+  padding: 12px 16px;
   font-family: var(--font-base);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: #fff;
   outline: none;
-  transition: border-color var(--trans-fast), background var(--trans-fast);
+  transition: border-color var(--trans-fast), background var(--trans-fast), box-shadow var(--trans-fast);
 }
 
 .tx-input:focus, .tx-textarea:focus {
   border-color: var(--netflix-red);
-  background: rgba(20, 20, 20, 0.95);
+  background: rgba(22, 22, 22, 0.95);
+  box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.25);
 }
 
 .tx-textarea {
   resize: vertical;
-  min-height: 65px;
+  min-height: 80px;
+  line-height: 1.5;
 }
 
 .tx-submit-btn {
+  background: var(--netflix-red) !important;
+  color: #ffffff !important;
+  border: none;
   align-self: flex-start;
-  padding: 10px 22px;
-  font-size: 0.88rem;
+  padding: 12px 28px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(229, 9, 20, 0.4);
+  transition: background var(--trans-fast), transform var(--trans-fast), box-shadow var(--trans-fast);
 }
 
-.hub-link-pill:hover {
-  background: var(--netflix-red);
+.tx-submit-btn:hover {
+  background: var(--netflix-red-hover) !important;
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(229, 9, 20, 0.6);
 }
 
 /* ==========================================================================
@@ -1815,9 +1854,10 @@ button {
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%) translateY(80px);
-  background: rgba(18, 18, 18, 0.95);
-  border: 1px solid #333;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  background: rgba(18, 18, 18, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 3px solid var(--netflix-red);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85);
   padding: 12px 24px;
   border-radius: 4px;
   display: flex;
@@ -1825,13 +1865,15 @@ button {
   gap: 12px;
   z-index: 2000;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: transform 0.35s ease, opacity 0.3s ease;
+  transition: transform 0.35s ease, opacity 0.3s ease, visibility 0.35s;
 }
 
 .netflix-toast.show {
   transform: translateX(-50%) translateY(0);
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 

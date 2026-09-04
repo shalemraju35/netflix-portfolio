@@ -40,9 +40,9 @@
   </div>
 
   <!-- Global Toast Notification -->
-  <div id="toast" class="netflix-toast" role="status" aria-live="polite">
+  <div id="toast" class="netflix-toast" role="status" aria-live="polite" style="visibility: hidden;">
     <span class="toast-n-logo">N</span>
-    <span class="toast-msg" id="toast-text">Notification</span>
+    <span class="toast-msg" id="toast-text"></span>
   </div>
 
   <!-- 2. Netflix Navigation Header -->
@@ -762,7 +762,7 @@
                   <input type="email" id="tx-email" placeholder="Your Work Email" class="tx-input" required>
                 </div>
                 <textarea id="tx-message" placeholder="Describe role, project requirements, or partnership proposal..." rows="2" class="tx-textarea" required></textarea>
-                <button type="submit" class="btn-netflix play-btn tx-submit-btn" id="tx-submit-btn">
+                <button type="submit" class="btn-netflix tx-submit-btn" id="tx-submit-btn">
                   <span>🚀 Send Telemetry Transmission</span>
                 </button>
               </form>

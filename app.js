@@ -655,10 +655,16 @@
       if (toastTimer) clearTimeout(toastTimer);
 
       toastText.textContent = msg;
+      toast.style.visibility = 'visible';
       toast.classList.add('show');
 
       toastTimer = setTimeout(() => {
         toast.classList.remove('show');
+        setTimeout(() => {
+          if (!toast.classList.contains('show')) {
+            toast.style.visibility = 'hidden';
+          }
+        }, 360);
       }, 3500);
     }
 

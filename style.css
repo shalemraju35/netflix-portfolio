@@ -492,11 +492,10 @@ button {
    ========================================================================== */
 .billboard-hero {
   position: relative;
-  height: 88vh;
-  min-height: 560px;
+  min-height: 85vh;
   display: flex;
   align-items: center;
-  padding: 0 4%;
+  padding: 110px 4% 70px 4%;
   background: #000;
   overflow: hidden;
 }
@@ -822,6 +821,7 @@ button {
   display: flex;
   align-items: center;
   gap: 14px;
+  margin-bottom: 24px;
 }
 
 .btn-netflix {
@@ -904,7 +904,7 @@ button {
 .netflix-browse-container {
   position: relative;
   z-index: 20;
-  margin-top: -60px;
+  margin-top: 30px;
   padding-bottom: 80px;
 }
 
@@ -2074,6 +2074,14 @@ button {
     text-align: left;
   }
 
+  .billboard-actions {
+    margin-bottom: 24px;
+  }
+
+  .netflix-browse-container {
+    margin-top: 30px;
+  }
+
   .billboard-hero-poster-wrapper {
     margin-right: 0;
     margin-bottom: 8px;
@@ -2117,6 +2125,18 @@ button {
 
   .netflix-brand-logo {
     font-size: 2rem;
+  }
+
+  .billboard-hero {
+    padding: 95px 4% 50px 4%;
+  }
+
+  .billboard-actions {
+    margin-bottom: 22px;
+  }
+
+  .netflix-browse-container {
+    margin-top: 26px;
   }
 
   /* Swiping is natural on touch devices; hide arrow buttons to avoid edge conflicts */
@@ -2323,13 +2343,18 @@ button {
 /* --- Breakpoint: Standard Mobile Phones (<= 600px) --- */
 @media (max-width: 600px) {
   .billboard-hero {
-    padding: 85px 4% 40px 4%;
+    padding: 85px 4% 50px 4%;
   }
 
   .billboard-actions {
     flex-direction: column;
     align-items: stretch;
     gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .netflix-browse-container {
+    margin-top: 24px;
   }
 
   .btn-netflix {
@@ -2471,7 +2496,15 @@ button {
   }
 
   .billboard-hero {
-    padding: 75px 16px 36px 16px;
+    padding: 75px 16px 44px 16px;
+  }
+
+  .billboard-actions {
+    margin-bottom: 20px;
+  }
+
+  .netflix-browse-container {
+    margin-top: 24px;
   }
 
   .billboard-container-flex {

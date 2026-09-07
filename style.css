@@ -401,13 +401,45 @@ button {
 .mobile-menu-toggle {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 6px;
+  background: transparent;
+  border: none;
   gap: 5px;
+  cursor: pointer;
+  z-index: 510;
+  border-radius: 4px;
+  transition: background var(--trans-fast);
+}
+
+.mobile-menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .mobile-menu-toggle .bar {
   width: 22px;
   height: 2px;
   background: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+}
+
+.mobile-menu-toggle.open .bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  background: var(--netflix-red);
+}
+
+.mobile-menu-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.mobile-menu-toggle.open .bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  background: var(--netflix-red);
 }
 
 .mobile-drawer {
@@ -415,22 +447,44 @@ button {
   top: 68px;
   left: 0;
   width: 100%;
-  background: rgba(15, 15, 15, 0.98);
-  border-bottom: 1px solid #222;
-  padding: 20px 4%;
-  display: none;
+  max-height: calc(100vh - 68px);
+  overflow-y: auto;
+  background: rgba(12, 12, 12, 0.98);
+  border-bottom: 1px solid #282828;
+  padding: 16px 4%;
+  display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 6px;
+  transform: translateY(-110%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
   z-index: 490;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.85);
 }
 
 .mobile-drawer.open {
-  display: flex;
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .mobile-nav-link {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--netflix-gray-light);
+  font-weight: 500;
+  padding: 12px 16px;
+  border-radius: 4px;
+  border-left: 3px solid transparent;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  display: block;
+}
+
+.mobile-nav-link:hover, .mobile-nav-link:active {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-left-color: var(--netflix-red);
 }
 
 /* ==========================================================================
@@ -1934,8 +1988,65 @@ button {
 }
 
 /* ==========================================================================
-   11. RESPONSIVE BREAKPOINTS
+   11. COMPREHENSIVE RESPONSIVE DESIGN SYSTEM
+   Supports: Large Displays, Laptops, Tablets, Phablets, Mobile (Portrait/Landscape)
    ========================================================================== */
+
+/* --- Touch Device & Scroll Safeguards --- */
+@media (hover: none) and (pointer: coarse) {
+  .carousel-track {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+
+  .netflix-card {
+    scroll-snap-align: start;
+  }
+
+  /* Prevent sticky desktop hover popover on touch screens */
+  .netflix-card:hover {
+    transform: none;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* --- Breakpoint: Laptops & Small Desktops (<= 1200px) --- */
+@media (max-width: 1200px) {
+  .header-left {
+    gap: 24px;
+  }
+
+  .header-nav-list {
+    gap: 14px;
+  }
+
+  .nav-item {
+    font-size: 0.82rem;
+  }
+
+  .billboard-title {
+    font-size: clamp(3rem, 5.5vw, 4.4rem);
+  }
+
+  .billboard-container-flex {
+    gap: 32px;
+  }
+
+  .billboard-hero-poster-wrapper {
+    flex: 0 0 260px;
+    margin-right: 20px;
+  }
+
+  .hero-poster-card {
+    width: 250px;
+  }
+
+  .netflix-card {
+    flex: 0 0 250px;
+  }
+}
+
+/* --- Breakpoint: Tablets & iPad Landscape/Portrait (<= 980px) --- */
 @media (max-width: 980px) {
   .header-nav-list {
     display: none;
@@ -1947,19 +2058,25 @@ button {
 
   .billboard-hero {
     height: auto;
-    min-height: 750px;
+    min-height: 720px;
     padding: 100px 4% 60px 4%;
   }
 
   .billboard-container-flex {
     flex-direction: column-reverse;
     align-items: center;
-    gap: 30px;
-    margin-top: 20px;
+    gap: 28px;
+    margin-top: 10px;
+  }
+
+  .billboard-content {
+    max-width: 100%;
+    text-align: left;
   }
 
   .billboard-hero-poster-wrapper {
     margin-right: 0;
+    margin-bottom: 8px;
     flex: 0 0 auto;
   }
 
@@ -1968,49 +2085,670 @@ button {
   }
 
   .hero-poster-img {
-    height: 300px;
+    height: 290px;
   }
 
   .billboard-title {
-    font-size: 2.8rem;
+    font-size: clamp(2.6rem, 6.5vw, 3.8rem);
+  }
+
+  .modal-window {
+    width: 92%;
+    max-height: 90vh;
   }
 
   .modal-body {
     grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 24px;
+  }
+
+  .genres-bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 }
 
-@media (max-width: 600px) {
+/* --- Breakpoint: Phablets & Small Tablets (<= 768px) --- */
+@media (max-width: 768px) {
+  .netflix-header {
+    height: 64px;
+  }
+
+  .netflix-brand-logo {
+    font-size: 2rem;
+  }
+
+  /* Swiping is natural on touch devices; hide arrow buttons to avoid edge conflicts */
+  .carousel-nav {
+    display: none !important;
+  }
+
+  .carousel-track {
+    gap: 10px;
+    padding: 14px 0 20px 0;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+
   .netflix-card {
     flex: 0 0 220px;
+    scroll-snap-align: start;
   }
 
-  .billboard-actions {
-    flex-direction: column;
-    align-items: stretch;
+  .row-title {
+    font-size: 1.2rem;
   }
 
-  .btn-netflix {
-    justify-content: center;
+  .netflix-row {
+    margin-bottom: 36px;
   }
 
+  /* Sound Controls: Neat mobile positioning */
   .billboard-right-controls {
+    position: absolute;
+    top: 76px;
+    right: 4%;
+    bottom: auto;
+  }
+
+  .billboard-maturity-bar {
     display: none;
   }
 
+  .sound-toggle-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+    background: rgba(20, 20, 20, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  /* Episode Cards */
   .episode-card {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .episode-num {
+    display: none;
   }
 
   .episode-thumb {
     width: 100%;
-    height: 180px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .episode-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .episode-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .episode-title {
+    font-size: 1.05rem;
+  }
+
+  .episode-duration {
+    font-size: 0.78rem;
+  }
+
+  .episode-desc {
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
+  .episode-tags {
+    font-size: 0.75rem;
+  }
+
+  /* Transmission Hub & Form */
+  .transmission-hub {
+    padding: 22px 18px;
   }
 
   .hub-channel-item {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .ch-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 8px;
+  }
+
+  .ch-val {
+    font-size: 0.88rem;
+    word-break: break-all;
+  }
+
+  .ch-links {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .hub-form-item {
+    padding: 18px 14px;
+  }
+
+  .form-inputs-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .tx-submit-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Interactive Modal Dialog */
+  .modal-window {
+    width: 95%;
+    max-height: 92vh;
+    border-radius: 8px;
+  }
+
+  .modal-hero-banner {
+    height: auto;
+    min-height: 240px;
+    padding: 24px 18px;
+  }
+
+  .modal-title {
+    font-size: clamp(1.9rem, 6.5vw, 2.6rem);
+    margin: 6px 0 14px 0;
+  }
+
+  .modal-actions-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .modal-actions-row .btn-netflix {
+    width: 100%;
+    justify-content: center;
+    padding: 11px 18px;
+    font-size: 0.95rem;
+  }
+
+  .modal-body {
+    padding: 20px 18px;
+    gap: 24px;
+  }
+
+  .modal-meta-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .modal-close-btn {
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .modal-ep-item {
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .m-ep-meta {
+    margin-left: 0;
+    width: 100%;
+    font-size: 0.72rem;
+  }
+}
+
+/* --- Breakpoint: Standard Mobile Phones (<= 600px) --- */
+@media (max-width: 600px) {
+  .billboard-hero {
+    padding: 85px 4% 40px 4%;
+  }
+
+  .billboard-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .btn-netflix {
+    justify-content: center;
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 0.95rem;
+  }
+
+  .billboard-title {
+    font-size: clamp(2rem, 8vw, 2.9rem);
+    line-height: 1;
+    word-break: break-word;
+  }
+
+  .billboard-synopsis {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+
+  .billboard-meta {
+    gap: 6px;
+    font-size: 0.8rem;
+  }
+
+  .netflix-card {
+    flex: 0 0 195px;
+  }
+
+  .thumb-title {
+    font-size: 1.2rem;
+  }
+
+  .thumb-sub {
+    font-size: 0.68rem;
+  }
+
+  .genres-bento-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .genre-tile {
+    padding: 18px;
+  }
+
+  /* Who's Watching Profiles */
+  .profile-heading {
+    font-size: 2.2rem;
+  }
+
+  .profile-subheading {
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+  }
+
+  .profile-grid {
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .profile-card {
+    width: 100px;
+  }
+
+  .profile-avatar-box {
+    width: 85px;
+    height: 85px;
+    border-radius: 6px;
+  }
+
+  .profile-icon {
+    font-size: 2.2rem;
+  }
+
+  .profile-name {
+    font-size: 0.85rem;
+  }
+
+  .profile-hint {
+    display: none;
+  }
+
+  /* Footer */
+  .netflix-footer {
+    padding: 40px 4% 28px 4%;
+  }
+
+  .footer-socials {
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+  }
+
+  .footer-nav-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    font-size: 0.78rem;
+  }
+}
+
+/* --- Breakpoint: Compact Mobile Phones (<= 480px) --- */
+@media (max-width: 480px) {
+  .netflix-header {
+    height: 60px;
+    padding: 0 16px;
+  }
+
+  .netflix-brand-logo {
+    font-size: 1.85rem;
+    letter-spacing: 1.5px;
+  }
+
+  .header-right {
+    gap: 12px;
+  }
+
+  .search-box.open .search-input {
+    width: 120px;
+    font-size: 0.78rem;
+    padding: 4px 8px;
+  }
+
+  .notification-dropdown {
+    width: min(290px, calc(100vw - 32px));
+    right: -45px;
+  }
+
+  .mobile-drawer {
+    top: 60px;
+    max-height: calc(100vh - 60px);
+    padding: 14px 16px;
+  }
+
+  .mobile-nav-link {
+    font-size: 0.95rem;
+    padding: 10px 14px;
+  }
+
+  .billboard-hero {
+    padding: 75px 16px 36px 16px;
+  }
+
+  .billboard-container-flex {
+    gap: 20px;
+  }
+
+  .billboard-title {
+    font-size: clamp(1.9rem, 8.5vw, 2.5rem);
+  }
+
+  .top-10-row {
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .top-10-badge {
+    font-size: 0.85rem;
+    padding: 2px 6px;
+  }
+
+  .hero-poster-card {
+    width: min(230px, 78vw);
+  }
+
+  .hero-poster-img {
+    height: 250px;
+  }
+
+  .hero-poster-info {
+    padding: 8px 12px;
+  }
+
+  .hero-poster-name {
+    font-size: 1rem;
+  }
+
+  .hero-poster-role {
+    font-size: 0.65rem;
+  }
+
+  .netflix-row {
+    padding: 0 16px;
+    margin-bottom: 28px;
+  }
+
+  .row-title {
+    font-size: 1.05rem;
+  }
+
+  .netflix-card {
+    flex: 0 0 175px;
+  }
+
+  .thumb-title {
+    font-size: 1.05rem;
+  }
+
+  .thumb-sub {
+    font-size: 0.64rem;
+  }
+
+  /* Transmission Hub */
+  .transmission-hub {
+    padding: 16px 12px;
+  }
+
+  .hub-header {
+    font-size: 0.68rem;
+    margin-bottom: 14px;
+  }
+
+  .hub-channel-item {
+    padding: 12px 10px;
+  }
+
+  .ch-lbl {
+    font-size: 0.75rem;
+  }
+
+  .ch-val {
+    font-size: 0.82rem;
+  }
+
+  .netflix-mini-btn {
+    font-size: 0.72rem;
+    padding: 5px 10px;
+  }
+
+  .hub-link-pill {
+    font-size: 0.72rem;
+    padding: 6px 10px;
+  }
+
+  .hub-form-item {
+    padding: 14px 10px;
+  }
+
+  .tx-input, .tx-textarea {
+    font-size: 0.84rem;
+    padding: 10px 12px;
+  }
+
+  .tx-submit-btn {
+    font-size: 0.84rem;
+    padding: 11px 16px;
+  }
+
+  /* Interactive Modal Dialog */
+  .modal-window {
+    width: 96%;
+    max-height: 94vh;
+    margin: 8px auto;
+  }
+
+  .modal-hero-banner {
+    min-height: 180px;
+    padding: 18px 14px;
+  }
+
+  .modal-title {
+    font-size: 1.7rem;
+    margin: 4px 0 10px 0;
+  }
+
+  .modal-actions-row .btn-netflix {
+    padding: 10px 14px;
+    font-size: 0.88rem;
+  }
+
+  .modal-body {
+    padding: 16px 12px;
+    gap: 16px;
+  }
+
+  .modal-meta-row {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+
+  .modal-synopsis {
+    font-size: 0.86rem;
+    margin-bottom: 16px;
+  }
+
+  .modal-section-title {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .modal-ep-item {
+    padding: 8px 10px;
+    font-size: 0.78rem;
+  }
+
+  /* Preloader */
+  .ribbon-letter {
+    width: 48px;
+    height: 70px;
+    margin-bottom: 12px;
+  }
+
+  .netflix-n-bar {
+    width: 13px;
+  }
+
+  .netflix-n-bar.diag {
+    width: 16px;
+  }
+
+  .preloader-title {
+    font-size: 2.4rem;
+    letter-spacing: 2px;
+  }
+
+  .preloader-sub {
+    font-size: 0.62rem;
+    letter-spacing: 1.5px;
+    text-align: center;
+    padding: 0 16px;
+  }
+
+  .preloader-skip-btn {
+    margin-top: 24px;
+    font-size: 0.8rem;
+    padding: 8px 16px;
+  }
+
+  /* Global Toast Notification */
+  .netflix-toast {
+    width: calc(100% - 32px);
+    max-width: 330px;
+    padding: 10px 14px;
+    bottom: 16px;
+  }
+
+  .toast-msg {
+    font-size: 0.8rem;
+    white-space: normal;
+    text-align: center;
+  }
+
+  /* Footer */
+  .footer-nav-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-copy {
+    text-align: center;
+    font-size: 0.7rem;
+    line-height: 1.45;
+  }
+}
+
+/* --- Breakpoint: Ultra-Narrow Screens (<= 360px, e.g. Galaxy Fold / iPhone SE) --- */
+@media (max-width: 360px) {
+  .netflix-brand-logo {
+    font-size: 1.6rem;
+  }
+
+  .billboard-title {
+    font-size: 1.7rem;
+  }
+
+  .hero-poster-card {
+    width: 195px;
+  }
+
+  .hero-poster-img {
+    height: 220px;
+  }
+
+  .netflix-card {
+    flex: 0 0 155px;
+  }
+
+  .profile-card {
+    width: 80px;
+  }
+
+  .profile-avatar-box {
+    width: 68px;
+    height: 68px;
+  }
+
+  .profile-icon {
+    font-size: 1.6rem;
+  }
+
+  .profile-name {
+    font-size: 0.76rem;
+  }
+}
+
+/* --- Landscape Mode on Small Devices --- */
+@media (max-height: 500px) and (orientation: landscape) {
+  .billboard-hero {
+    min-height: auto;
+    padding: 80px 4% 40px 4%;
+  }
+
+  .modal-window {
+    max-height: 96vh;
+  }
+
+  .modal-hero-banner {
+    min-height: 140px;
+    padding: 14px;
+  }
+
+  .modal-title {
+    font-size: 1.6rem;
+    margin: 4px 0 8px 0;
+  }
+
+  .mobile-drawer {
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
   }
 }

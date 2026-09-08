@@ -331,7 +331,8 @@ button {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
 }
 
-.notification-wrap:hover .notification-dropdown {
+.notification-wrap:hover .notification-dropdown,
+.notification-wrap.open .notification-dropdown {
   display: block;
 }
 
@@ -495,7 +496,7 @@ button {
   min-height: 85vh;
   display: flex;
   align-items: center;
-  padding: 110px 4% 70px 4%;
+  padding: 110px 4% 95px 4%;
   background: #000;
   overflow: hidden;
 }
@@ -864,11 +865,11 @@ button {
 .billboard-right-controls {
   position: absolute;
   right: 0;
-  bottom: 120px;
+  bottom: 25px;
   display: flex;
   align-items: center;
   gap: 14px;
-  z-index: 10;
+  z-index: 15;
 }
 
 .sound-toggle-btn {
@@ -1201,6 +1202,19 @@ button {
 .circle-btn:hover {
   border-color: #fff;
   transform: scale(1.08);
+}
+
+.circle-btn.add.added {
+  background: var(--netflix-red);
+  border-color: var(--netflix-red);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.circle-btn.like.liked {
+  background: rgba(229, 9, 20, 0.25);
+  border-color: var(--netflix-red);
+  transform: scale(1.12);
 }
 
 .circle-btn.more {
@@ -2064,7 +2078,7 @@ button {
   .billboard-hero {
     height: auto;
     min-height: 720px;
-    padding: 100px 4% 60px 4%;
+    padding: 100px 4% 85px 4%;
   }
 
   .billboard-container-flex {
@@ -2133,7 +2147,7 @@ button {
   }
 
   .billboard-hero {
-    padding: 95px 4% 50px 4%;
+    padding: 95px 4% 85px 4%;
   }
 
   .billboard-actions {
@@ -2208,13 +2222,10 @@ button {
   /* Sound Controls: Neat mobile positioning */
   .billboard-right-controls {
     position: absolute;
-    top: 76px;
-    right: 4%;
-    bottom: auto;
-  }
-
-  .billboard-maturity-bar {
-    display: none;
+    bottom: 20px;
+    right: 0;
+    top: auto;
+    z-index: 15;
   }
 
   .sound-toggle-btn {

@@ -313,6 +313,8 @@
     initProfileSelector();
     initClipboardToast();
     initMobileNav();
+    initNotificationDropdown();
+    initCardActionButtons();
     initContactForm();
   });
 
@@ -734,6 +736,97 @@
         closeDrawer();
       }
     }, { passive: true });
+  }
+
+  /* ==========================================================================
+     8B. INTERACTIVE CARD ACTION BUTTONS (+ and LIKE)
+     ========================================================================== */
+  function initCardActionButtons() {
+    const addButtons = document.querySelectorAll('button.circle-btn.add');
+    const likeButtons = document.querySelectorAll('button.circle-btn.like');
+
+    function getCardTitle(btn) {
+      const card = btn.closest('.netflix-card');
+      if (!card) return 'Project';
+      const titleEl = card.querySelector('.thumb-title') || card.querySelector('.card-name') || card.querySelector('strong');
+      return titleEl ? titleEl.textContent.trim() : 'Project';
+    }
+
+    addButtons.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        const title = getCardTitle(btn);
+        const isAdded = btn.classList.toggle('added');
+        if (isAdded) {
+          btn.textContent = '✓';
+          btn.setAttribute('aria-label', `Remove ${title} from My List`);
+          btn.setAttribute('title', 'Remove from My List');
+          if (window.showToast) {
+            window.showToast(`✅ Added "${title}" to My List`);
+          }
+        } else {
+          btn.textContent = '+';
+          btn.setAttribute('aria-label', `Add ${title} to My List`);
+          btn.setAttribute('title', 'Add to My List');
+          if (window.showToast) {
+            window.showToast(`Removed "${title}" from My List`);
+          }
+        }
+      });
+    });
+
+    likeButtons.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        const title = getCardTitle(btn);
+        const isLiked = btn.classList.toggle('liked');
+        if (isLiked) {
+          btn.setAttribute('aria-label', `Unlike ${title}`);
+          btn.setAttribute('title', 'Unlike');
+          if (window.showToast) {
+            window.showToast(`❤️ Liked "${title}"`);
+          }
+        } else {
+          btn.setAttribute('aria-label', `Like ${title}`);
+          btn.setAttribute('title', 'Like');
+          if (window.showToast) {
+            window.showToast(`Unliked "${title}"`);
+          }
+        }
+      });
+    });
+  }
+
+  /* ==========================================================================
+     8C. NOTIFICATION DROPDOWN (MOBILE TOUCH & DESKTOP TOGGLE)
+     ========================================================================== */
+  function initNotificationDropdown() {
+    const wrap = document.getElementById('notification-wrap');
+    if (!wrap) return;
+    const btn = wrap.querySelector('.icon-btn');
+    if (!btn) return;
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = wrap.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (wrap.classList.contains('open') && !wrap.contains(e.target)) {
+        wrap.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && wrap.classList.contains('open')) {
+        wrap.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
   }
 
   /* ==========================================================================
